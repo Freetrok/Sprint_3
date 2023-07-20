@@ -13,7 +13,6 @@ def test_login_by_main_button(browser, open_main_page):
     WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, Locators.OrderRegButton)))
     assert browser.current_url == 'https://stellarburgers.nomoreparties.site/'
 
-
 def test_login_by_button_in_own_cab(browser, open_main_page):
     browser.find_element(By.XPATH, Locators.OwnCab).click()
     browser.find_element(By.XPATH, Locators.InputFieldEmailLogin).send_keys("sep@ya.ru")

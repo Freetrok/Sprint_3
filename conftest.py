@@ -3,22 +3,19 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-import func
 import Locators
 
 
 @pytest.fixture()
 def browser():
     driver = webdriver.Chrome()
+    driver.get('https://stellarburgers.nomoreparties.site/')
+
     yield driver
     driver.quit()
 
 @pytest.fixture()
-def open_main_page(browser):
-    browser.get('https://stellarburgers.nomoreparties.site/')
-
-@pytest.fixture()
-def register(browser, open_main_page):
+def register(browser):
     browser.find_element(By.XPATH, Locators.OwnCab).click()
     WebDriverWait(browser, 3).until(EC.presence_of_element_located((By.XPATH, Locators.EnterButtonLogin)))
     browser.find_element(By.XPATH, Locators.RegisterButtonEnter).click()
